@@ -1,0 +1,54 @@
+<!-- IN LA -->
+
+<html ng-app="myApp"> <!-- Angular -->
+    <head>
+        <title>Chelle's Todo</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container" ng-controller="AppCtrl">
+            <div class="page-header">
+                <h1 style="text-align: center">Chelle's Todo List</h1>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Text</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input class="form-control" ng-model="todo.title"></td>
+                        <td><input class="form-control" ng-model="todo.text"></td>
+                        <td><input class="form-control" ng-model="todo.due"></td>
+                        <td>&nbsp;</td>
+                        <td><button class="btn btn-primary" ng-click="addTodo()">Add Todo</button></td>
+                        <td><button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;
+                        <button class="btn btn-info" ng-click="deselect()">Clear</button></td> 
+			        </tr> 
+                    <tr ng-repeat="todo in todos">
+                        <td>{{todo.title}}</td>
+                        <td>{{todo.text}}</td>
+				        <td>{{todo.due}}</td>
+                        <td>{{todo.status}}</td>
+				        <td><a class="btn btn-primary btn-xs" href="#" ng-click="mark(todo._id)">Mark as Done</a>&nbsp;&nbsp;
+                        <button class="btn btn-warning" ng-click="edit(todo._id)">Edit</button></td>
+                        <td><a href="#" ng-click="remove(todo._id)" style="color:#e74c3c"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right"></span></a></td>
+			        </tr>
+                </tbody>
+            </table>
+            <div class="jumbotron" ng-if="todos.length == 0">
+			<h1>Uh-Oh! <small>There are no tasks to display.</small></h1>
+		    </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script src="controllers/controller.js"></script>
+    </body>
+</html>
